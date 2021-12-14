@@ -25,20 +25,25 @@ let salaries = [{
 
 // Exercise 1
 
-const getEmployee = async (id) => {
-        let employee = employees.find(employee => employee.id === id);
+const getEmployee = (id) => {
+        return new Promise((resolve, reject) => {
+            let employee = employees.find(employee => employee.id === id);
         if (!employee) {
-            throw new Error('Employee not found');
+            reject('Employee not found');
         }
-        return employee;
+        resolve(employee);
+    });
 }
 
-const getSalary = async (employee) => {
+const getSalary = (employee) => {
+    return new Promise((resolve, reject) => {
+
         let salary = salaries.find(salary => salary.id === employee.id);
         if (!salary) {
-            throw new Error('Salary not found');
+            reject('Salary not found');
         }
-        return salary.salary;
+        resolve(salary.salary);
+    });
 }
 
 // Exercise 2 
@@ -47,18 +52,12 @@ const getFullEmployeeInfo = async (id) => {
     let salary;
     try {
         employee = await getEmployee(id);
-    } catch (error) {
-        console.log(error.message);
-        return; // Void return to not execute the rest of the code
-    }
-    try {
         salary = await getSalary(employee);
+        console.log(`${employee.name} has salary of ${salary}`);
     } catch (error) {
         console.log(error.message);
-        return; // Void return to not execute the rest of the code
     }
     
-    console.log(`${employee.name} has salary of ${salary}`);
 }
 
 getFullEmployeeInfo(1);
