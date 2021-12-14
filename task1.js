@@ -20,7 +20,7 @@ function getFullName(name, surname) {
     return `${name} ${surname}`
 }
 
-console.log(getFullName("David", "Morales"));
+console.log(`Hello, my name is: ${getFullName('David', 'Morales')}`);
 
 
 // LEVEL 3
@@ -28,18 +28,15 @@ console.log(getFullName("David", "Morales"));
 let arrayFunctions = [];
 for (let i = 0; i < 10; i++) {
     arrayFunctions.push(function() {
-        console.log(...Array(10).keys());
+        [...Array(10)].map((_, n) => console.log(n));
     });
 }
 
 arrayFunctions.map(func => func());
 
 // Exercise 2
-(function(name) {
+sayName = (function(name) {
     console.log(name);
 })('David');
 
-function sayName(name) {
-    console.log(name);
-}
-sayName('David');
+sayName;
