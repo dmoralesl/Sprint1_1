@@ -24,17 +24,27 @@ person.sayName();
 
 
 // LEVEL 3
-function* personGenerator(name) {
-    // First yield is "default" name to demonstrate how generators
-    // can stop in the middle of the execution of the function and wait
-    // for next call to continue from that point
-    yield new Person('Default');
-    // This yield gonna use the name provided in function call
-    // to create the new person
-    yield new Person(name);
-}
-const generator = personGenerator('My awesome name');
 
-console.log(generator.next().value);
-console.log(generator.next().value);
+class AbstractClass {
+    
+    constructor() {
+        if (this.constructor == AbstractClass) {
+            throw new Error("Abstract classes can't be instantiated.");
+        }
+    }
+}
+
+function personGenerator() {
+    AbstractClass.prototype.sayName = function(name) {
+        console.log(name);
+    }
+
+    return AbstractClass.prototype;
+    
+}
+
+personGenerator().sayName('David');
+personGenerator().sayName('No David');
+personGenerator().sayName('Random name');
+
 
