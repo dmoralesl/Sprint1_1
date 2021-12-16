@@ -1,11 +1,16 @@
 // LEVEL 1
 
 // Exercise 1
+
+// function that console.log a message each 1 second
+
+
+
 function printEachSecond() {
-    console.log('Printing message each second');
-    setInterval(printEachSecond, 1000);
+    setInterval(() => console.log('Printing message each second'), 1000);
 }
 printEachSecond();
+
 
 // Excersice 2
 const fs = require('fs');
@@ -84,7 +89,6 @@ var crypto  = require( 'crypto' );
 // AES192 key
 const DATA_CRYPT_KEY = Buffer.from("5451CEFA2A63345CBE3DD8788058BFE5447CAE223317A12A", "hex");
 const DATA_CRYPT_IV = Buffer.from("8FFED018B16D4A7DB92D6FDF4F1394F5", "hex");
-// console.log(crypto.randomBytes(16).toString('utf-8'))
 function encryptFile(filename, encode) {
     const content = fs.readFileSync(filename);
     fs.unlinkSync(filename);
